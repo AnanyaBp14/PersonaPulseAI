@@ -9,7 +9,7 @@ const AVAILABLE_PLATFORMS = [
   { id: 'WhatsApp', icon: MessageCircle, color: 'text-green-500', border: 'border-green-200', bg: 'bg-green-50' }
 ];
 
-export default function LeftSidebar() {
+export default function LeftSidebar({ user, signOut }) {
   const { formData, setFormData, submitCampaign, loading } = useCampaign();
 
   const handlePlatformToggle = (platform) => {
@@ -116,6 +116,24 @@ export default function LeftSidebar() {
           ) : (
             <><Sparkles size={18}/> Generate Campaign</>
           )}
+        </button>
+      </div>
+
+       {/* USER PROFILE & LOGOUT SECTION */}
+       <div className="p-4 border-t border-slate-100 bg-white flex items-center justify-between mt-auto">
+        <div className="flex items-center gap-2 overflow-hidden">
+          <div className="w-8 h-8 rounded-full bg-indigo-100 flex items-center justify-center text-indigo-700 font-bold shrink-0">
+            {user?.signInDetails?.loginId?.charAt(0).toUpperCase() || 'U'}
+          </div>
+          <div className="text-xs font-medium text-slate-600 truncate">
+            {user?.signInDetails?.loginId || 'Logged In'}
+          </div>
+        </div>
+        <button 
+          onClick={signOut}
+          className="text-xs font-bold text-red-500 hover:text-red-700 hover:bg-red-50 px-3 py-2 rounded-lg transition-colors"
+        >
+          Log Out
         </button>
       </div>
     </div>
