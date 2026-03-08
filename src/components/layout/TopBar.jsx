@@ -24,7 +24,9 @@ export default function TopBar() {
             Bharat’s Omnichannel Campaign Engine
           </p>
         </div>
-
+        <span className="text-orange-600 font-bold">
+        {totalScore}/100
+        </span>
         <div className="flex items-center gap-8 text-sm">
           <Metric label="Platforms" value={results ? Object.keys(results.results).length : 0} />
           <Metric label="Overall Score" value={`${totalScore}/100`} highlight />

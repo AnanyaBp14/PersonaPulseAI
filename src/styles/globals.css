@@ -2,81 +2,169 @@
 @tailwind components;
 @tailwind utilities;
 
-/* ===============================
-   Base Styles
-================================= */
-@layer base {
-  html {
-    scroll-behavior: smooth;
-  }
+/* ============================= */
+/* GLOBAL THEME */
+/* ============================= */
 
-  body {
-    @apply bg-[#f5f6fa] text-slate-800 antialiased font-sans;
-  }
-
-  h1, h2, h3, h4, h5, h6 {
-    @apply font-semibold tracking-tight;
-  }
-
-  button {
-    @apply transition-all duration-200;
-  }
+body{
+  @apply bg-orange-50 text-gray-800 font-sans transition-colors duration-300;
 }
 
-/* ===============================
-   Custom Scrollbar (SaaS Style)
-================================= */
-::-webkit-scrollbar {
-  width: 6px;
-  height: 6px;
+.dark body{
+  @apply bg-gray-900 text-gray-100;
 }
 
-::-webkit-scrollbar-track {
-  background: transparent;
+/* ============================= */
+/* BUTTON */
+/* ============================= */
+
+.btn-primary{
+  @apply bg-orange-500 text-white px-4 py-2 rounded-lg hover:bg-orange-600 transition;
 }
 
-::-webkit-scrollbar-thumb {
-  background: #cbd5e1; /* slate-300 */
-  border-radius: 9999px;
+.dark .btn-primary{
+  @apply bg-orange-500 hover:bg-orange-400;
 }
 
-::-webkit-scrollbar-thumb:hover {
-  background: #94a3b8; /* slate-400 */
+/* ============================= */
+/* CARD */
+/* ============================= */
+
+.card{
+  @apply bg-white rounded-xl shadow-sm border border-orange-100 p-6;
 }
 
-/* ===============================
-   Card Elevation Utility
-================================= */
-@layer components {
-  .card {
-    @apply bg-white rounded-2xl border border-slate-200 shadow-sm;
+.dark .card{
+  @apply bg-gray-800 border-gray-700;
+}
+
+/* ============================= */
+/* INPUT */
+/* ============================= */
+
+.input{
+  @apply w-full border border-orange-200 rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-orange-400;
+}
+
+.dark .input{
+  @apply bg-gray-800 border-gray-700 text-white;
+}
+
+/* ============================= */
+/* PLATFORM BUTTON */
+/* ============================= */
+
+.platform-btn{
+  @apply border border-orange-200 rounded-lg px-4 py-3 flex items-center gap-2 hover:bg-orange-100 transition;
+}
+
+.dark .platform-btn{
+  @apply border-gray-700 hover:bg-gray-800;
+}
+
+.platform-active{
+  @apply bg-orange-100 border-orange-400 text-orange-600;
+}
+
+.dark .platform-active{
+  @apply bg-gray-800 border-orange-400 text-orange-400;
+}
+
+/* ============================= */
+/* TAG */
+/* ============================= */
+
+.tag{
+  @apply bg-orange-500 text-white text-xs px-3 py-1 rounded-full;
+}
+
+/* ============================= */
+/* DASHBOARD */
+/* ============================= */
+
+.dashboard{
+  @apply bg-orange-50 min-h-screen p-8;
+}
+
+.dark .dashboard{
+  @apply bg-gray-900;
+}
+
+/* ============================= */
+/* HEADER */
+/* ============================= */
+
+.header{
+  @apply flex justify-between items-center mb-6;
+}
+
+/* ============================= */
+/* SCORE BADGE */
+/* ============================= */
+
+.score{
+  @apply text-xs bg-orange-100 text-orange-600 px-2 py-1 rounded-full;
+}
+
+.dark .score{
+  @apply bg-gray-700 text-orange-400;
+}
+
+/* ============================= */
+/* AMPLIFY AUTH CARD OVERRIDES */
+/* ============================= */
+
+/* ============================= */
+/* AMPLIFY AUTH CARD DARK MODE FIX */
+/* ============================= */
+
+/* This forces the modal container to be dark */
+.dark [data-amplify-authenticator],
+.dark [data-amplify-authenticator] [data-amplify-router] {
+  background-color: #1f2937 !important; /* Tailwind gray-800 */
+  border-color: #374151 !important;     /* Tailwind gray-700 */
+  color: #f3f4f6 !important;             /* Tailwind gray-100 */
+  
+  /* Reset internal Amplify variables */
+  --amplify-colors-background-primary: #1f2937;
+  --amplify-colors-background-secondary: #111827;
+  --amplify-colors-font-primary: #f3f4f6;
+  --amplify-colors-font-secondary: #9ca3af;
+  --amplify-colors-border-primary: #374151;
+}
+
+/* Fix for the Email and Password input boxes */
+.dark [data-amplify-authenticator] input {
+  background-color: #374151 !important;
+  color: #ffffff !important;
+  border: 1px solid #4b5563 !important;
+}
+
+/* Fix for the tabs (Sign In / Create Account) */
+.dark .amplify-tabs-item {
+  color: #9ca3af !important;
+}
+
+.dark .amplify-tabs-item[data-state="active"] {
+  color: #f97316 !important; /* Your brand orange */
+  border-color: #f97316 !important;
+}
+
+/* Fix for the "Forgot your password?" link */
+.dark .amplify-button--link {
+  color: #fb923c !important;
+}
+/* ============================= */
+/* LOGIN ANIMATION */
+/* ============================= */
+
+@keyframes pop{
+  from{
+    transform:scale(0.95);
+    opacity:0;
   }
-
-  .card-hover {
-    @apply hover:shadow-md transition-shadow;
+  to{
+    transform:scale(1);
+    opacity:1;
   }
-
-  .section-title {
-    @apply text-xs font-semibold uppercase tracking-wider text-slate-500;
-  }
-
-  .badge-score {
-    @apply text-xs font-semibold px-2 py-1 rounded-full;
-  }
-}
-/* Override Amplify Auth Styles for a cleaner look */
-[data-amplify-authenticator] {
-  box-shadow: none !important;
-  border: none !important;
-  background: transparent !important;
-}
-
-[data-amplify-authenticator] [data-amplify-router] {
-  border: none !important;
-  box-shadow: none !important;
-  background: transparent !important;
-}
-
-.amplify-button--primary {
-  @apply bg-indigo-600 hover:bg-indigo-700 transition-colors !important;
 }
